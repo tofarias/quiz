@@ -25,9 +25,13 @@ class Quiz
             {
                 for( $contadorDeAlternativas = 0; $contadorDeAlternativas < 5; $contadorDeAlternativas ++ )
                 {
-                    if( empty($alternativas[$contadorDeAlternativas][$contadorDePerguntas]) ){
+                    if( empty($alternativas[$contadorDeAlternativas][$contadorDePerguntas]['frase']) ){
+
+                        $id = $serie['id'];
                         $nmSerie = array_shift( $serie['alternativas'] );
-                        $alternativas[$contadorDeAlternativas][$contadorDePerguntas] = $nmSerie;
+                        
+                        $alternativas[$contadorDeAlternativas][$contadorDePerguntas]['frase'] = $nmSerie;
+                        $alternativas[$contadorDeAlternativas][$contadorDePerguntas]['id_grupo'] = $id;
                     }
                 }
             }
