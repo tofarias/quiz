@@ -14,11 +14,10 @@ class PerguntasController extends Controller
         
     }
 
-    public function index()
+    public function index(\App\Quiz $quiz)
     {
-        $series = require_once base_path().'/database/series.php';
-        #dd( $series );
-        #dd( $series[0]['respostas']);
-        return view('index', compact('series'));
+        $gruposDeAlternativas = $quiz->criar();
+        
+        return view('index', compact('gruposDeAlternativas'));
     }
 }
