@@ -8,13 +8,13 @@ class Serie
 
     public function __construct() { }
 
-    public function buscar()
+    public function buscar() : Array
     {
         $series = require_once base_path().'/database/series.php';
         return $this->embaralharAlternativas($series);
     }
 
-    public function embaralharAlternativas($series)
+    public function embaralharAlternativas($series) : Array
     {
         foreach( $series as $indice => $serie )
         {

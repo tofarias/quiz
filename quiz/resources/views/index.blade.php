@@ -9,8 +9,8 @@
 </head>
 <body>
     
-    <form action="/action_page.php">
-
+    <form action="{{ route('avaliar-respostas') }}" method="POST">
+        
         <fieldset>
             <legend>1. De manhã, você:</legend>
             @foreach($gruposDeAlternativas[0] as $alternativa)

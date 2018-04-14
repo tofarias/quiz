@@ -20,4 +20,9 @@ class PerguntasController extends Controller
         
         return view('index', compact('gruposDeAlternativas'));
     }
+
+    public function avaliarRespostas(\Illuminate\Http\Request $request)
+    {
+        dd( $request->all() );
+    }
 }

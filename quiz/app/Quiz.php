@@ -13,7 +13,7 @@ class Quiz
         $this->serie    = $serie;
     }
 
-    public function criar()
+    public function criar() : Array
     {
         $series = $this->embaralharGrupo();
         $alternativas = [];
@@ -40,7 +40,7 @@ class Quiz
         return $alternativas;
     }
 
-    public function embaralharGrupo()
+    public function embaralharGrupo() : Array
     {
         $series = $this->serie->buscar();
         #shuffle( $series );
