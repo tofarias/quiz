@@ -11,6 +11,11 @@
 |
 */
 
-$router->get('/', function () use ($router) {
+/*$router->get('/', function () use ($router) {
     return $router->app->version();
-});
+});*/
+
+
+$router->get('/', [
+    'as' => 'quiz', 'uses' => 'PerguntasController@index'
+]);
