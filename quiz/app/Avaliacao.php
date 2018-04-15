@@ -40,15 +40,10 @@ class Avaliacao
             $i ++;
         }
 
-        $this->dados = $avaliacao;
-
-//        echo "<pre>";
-//        print_r($avaliacao);
-//        echo "</pre>";
-//        die;
+        $this->dados = $this->calcularNotas($avaliacao);
     }
 
-    public function calcularNotas()
+    public function calcularNotas( Array $dados ) : Array
     {
         foreach( $this->dados as $k => $dados )
         {
@@ -59,17 +54,12 @@ class Avaliacao
             }
         }
 
-        echo "<pre>";
-        #print_r( $this->dados );die;
         $arr = $this->dados;
-
         usort($arr, array($this,'ordenarPorNota'));
-        print_r( $arr );
-        echo "</pre>";
-        die;
+        return $arr;
     }
 
-    public static function ordenarPorNota($a, $b)
+    private static function ordenarPorNota($a, $b)
     {
         return $a['nota'] <= $b['nota'] ? 1 : -1;
     }
