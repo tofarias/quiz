@@ -2,7 +2,7 @@
 
 return [
     [
-        'grupo' => 'House of Cards',
+        'serie' => 'House of Cards',
         'id' => 1,
         'alternativas' => [
             'Acorda cedo e come frutas cortadas metodicamente.',
@@ -13,7 +13,7 @@ return [
         ]
     ],
     [
-        'grupo' => 'Game of Thrones',
+        'serie' => 'Game of Thrones',
         'id' => 2,
         'alternativas' => [
             'Sai da cama com o despertador e se prepara para a batalha da semana',
@@ -24,7 +24,7 @@ return [
         ]
     ],
     [
-        'grupo' => 'Lost',
+        'serie' => 'Lost',
         'id' => 3,
         'alternativas' => [
             'Só consegue lembrar do seu nome depois do café',
@@ -35,7 +35,7 @@ return [
         ]
     ],
     [
-        'grupo' => 'Breaking Bad',
+        'serie' => 'Breaking Bad',
         'id' => 4,
         'alternativas' => [
             'Levanta e faz café pra todos da casa.',
@@ -46,7 +46,7 @@ return [
         ]
     ],
     [
-        'grupo' => 'Silicon Valley',
+        'serie' => 'Silicon Valley',
         'id' => 5,
         'alternativas' => [
             'Passa o café e conserta um erro no HTML.',
