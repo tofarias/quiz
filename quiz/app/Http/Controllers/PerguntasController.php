@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Avaliacao;
 use App\Pergunta;
 
 class PerguntasController extends Controller
@@ -23,37 +24,8 @@ class PerguntasController extends Controller
         return view('index', compact('gruposDeAlternativas'));
     }
 
-    public function avaliarRespostas(\Illuminate\Http\Request $request, Pergunta $pergunta)
+    public function avaliarRespostas(\Illuminate\Http\Request $request, Avaliacao $avaliacao)
     {
-        $respostas = $request->all();
-
-        $avaliacao = [];
-
-        $i = 0;
-        for($id = 1; $id <=5; $id ++)
-        {
-            $arr = array_keys($respostas, $id);
-            #dd($arr);
-
-            if( !empty(count($arr)) ){
-                $avaliacao[$i]['serie_id']    = $id;
-                $avaliacao[$i]['total_votos'] = count($arr);
-
-                foreach( $arr as $k => $p )
-                {
-                    $avaliacao[$i]['perguntas'][$k]['pergunta'] = $p;
-                    $avaliacao[$i]['perguntas'][$k]['peso'] = $pergunta->getPesoPergunta($p);
-                }
-
-                #$avaliacao[$i]['perguntas']   = $arr;
-            }
-
-            $i ++;
-        }
-
-        echo "<pre>";
-        print_r($avaliacao);
-        echo "</pre>";
-        die;
+        $avaliacao->organizarDados( $request->all() );
     }
 }
