@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Illuminate\Support\Collection;
+
 class Quiz
 {
     private $pergunta;
@@ -13,9 +15,9 @@ class Quiz
         $this->serie    = $serie;
     }
 
-    public function criar() : Array
+    public function criar() : Collection
     {
-        $series = $this->embaralharGrupo();
+        $series = $this->embaralharSeries();
         $alternativas = [];
         foreach( $series as $k => $serie )
         {
@@ -33,11 +35,11 @@ class Quiz
                 }
             }
         }
-        
-        return $alternativas;
+
+        return new Collection($alternativas);
     }
 
-    public function embaralharGrupo() : Array
+    public function embaralharSeries() : Array
     {
         $series = $this->serie->buscar();
         #shuffle( $series );

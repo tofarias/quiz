@@ -4,19 +4,17 @@ namespace App;
 
 class Serie
 {
-    private $series;
+    private static $series;
 
     public function __construct() { }
 
-    public function _buscar() : Array
+    public function buscar()
     {
-        $series = require_once base_path().'/database/series.php';
-        return $this->embaralharAlternativas($series);
-    }
+        if( empty($this->series) ) {
+            self::$series = require base_path() . '/database/series.php';
+        }
 
-    public function buscar() : Array
-    {
-        return require_once base_path().'/database/series.php';
+        return $this->embaralharAlternativas(self::$series);
     }
 
     public function embaralharAlternativas($series) : Array
@@ -24,7 +22,7 @@ class Serie
         foreach( $series as $indice => $serie )
         {
             $alternativas = $serie['alternativas'];
-            #shuffle( $alternativas );
+            shuffle( $alternativas );
             $series[$indice]['alternativas'] = $alternativas;
         }
 
@@ -42,5 +40,20 @@ class Serie
         }
 
         return $ids;
+    }
+
+    public function buscarFrase(int $idSerie) : string
+    {
+        $series = $this->buscar();
+
+        $frase = null;
+        foreach( $series as $serie )
+        {
+            if( $serie['id'] == $idSerie ){
+                $frase = $serie['frase'];
+            }
+        }
+
+        return $frase;
     }
 }

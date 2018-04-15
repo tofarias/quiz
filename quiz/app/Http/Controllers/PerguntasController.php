@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Avaliacao;
 use App\Pergunta;
+use Illuminate\Http\Request;
 
 class PerguntasController extends Controller
 {
@@ -17,15 +18,17 @@ class PerguntasController extends Controller
         
     }
 
-    public function index(\App\Quiz $quiz)
+    public function index(Request $request, \App\Quiz $quiz, Avaliacao $avaliacao)
     {
-        $gruposDeAlternativas = $quiz->criar();
-        
-        return view('index', compact('gruposDeAlternativas'));
-    }
+        if( $request->isMethod('POST') ){
 
-    public function avaliarRespostas(\Illuminate\Http\Request $request, Avaliacao $avaliacao)
-    {
-        $avaliacao->organizarDados( $request->all() );
+            $dados = $avaliacao->avaliarDados( $request->all() );
+
+            $resposta = current($dados)['frase'];
+        }
+
+        $alternativasDasSeries = $quiz->criar();
+        
+        return view('index', compact('alternativasDasSeries', 'resposta'));
     }
 }

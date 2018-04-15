@@ -15,7 +15,7 @@ class Avaliacao
         $this->serie = $serie;
     }
 
-    public function organizarDados( Array $dadosDaRequisicao )
+    public function avaliarDados( Array $dadosDaRequisicao )
     {
         $idSeries = $this->serie->getIds();
 
@@ -28,6 +28,7 @@ class Avaliacao
 
             if( !empty(count($perguntas)) ){
                 $avaliacao[$i]['serie_id']    = $idSerie;
+                $avaliacao[$i]['frase']       = $this->serie->buscarFrase($idSerie);
                 $avaliacao[$i]['total_votos'] = count($perguntas);
 
                 foreach( $perguntas as $k => $pergunta )
@@ -40,10 +41,10 @@ class Avaliacao
             $i ++;
         }
 
-        $this->dados = $this->calcularNotas($avaliacao);
-        echo '<pre>';
-        print_r( $this->dados );
-        echo '</pre>';die;
+        return $this->calcularNotas($avaliacao);
+        #$echo '<pre>';
+        #print_r( $this->dados );
+        #echo '</pre>';die;
     }
 
     public function calcularNotas( Array $avaliacao ) : Array

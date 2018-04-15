@@ -26,11 +26,6 @@ class Pergunta
         return require_once base_path().'/database/series.php';
     }
 
-    public function avaliarRespostas(Request $request)
-    {
-
-    }
-
     public function getPesoPergunta(string $pergunta) : string
     {
         $perguntas = [
