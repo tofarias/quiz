@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Pergunta;
+
 class PerguntasController extends Controller
 {
     /**
@@ -21,68 +23,37 @@ class PerguntasController extends Controller
         return view('index', compact('gruposDeAlternativas'));
     }
 
-    public function avaliarRespostas(\Illuminate\Http\Request $request)
+    public function avaliarRespostas(\Illuminate\Http\Request $request, Pergunta $pergunta)
     {
-        #dd( $request->all() );
+        $respostas = $request->all();
 
         $avaliacao = [];
 
-        if ($request->filled('pergunta1')) {
-            $pesoQuestao = 1;
+        $i = 0;
+        for($id = 1; $id <=5; $id ++)
+        {
+            $arr = array_keys($respostas, $id);
+            #dd($arr);
 
-            $avaliacao['q1'] = [
-                'id' => $request->input('pergunta1'),
-                'peso_questao' => $pesoQuestao
-                ];
+            if( !empty(count($arr)) ){
+                $avaliacao[$i]['serie_id']    = $id;
+                $avaliacao[$i]['total_votos'] = count($arr);
 
-        }
-        if ($request->filled('pergunta2')) {
-            $pesoQuestao = 2;
+                foreach( $arr as $k => $p )
+                {
+                    $avaliacao[$i]['perguntas'][$k]['pergunta'] = $p;
+                    $avaliacao[$i]['perguntas'][$k]['peso'] = $pergunta->getPesoPergunta($p);
+                }
 
-            $avaliacao['q2'] = [
-                'id' => $request->input('pergunta2'),
-                'peso_questao' => $pesoQuestao
-            ];
-        }
-        if ($request->filled('pergunta3')) {
-            $pesoQuestao = 3;
+                #$avaliacao[$i]['perguntas']   = $arr;
+            }
 
-            $avaliacao['q3'] = [
-                'id' => $request->input('pergunta3'),
-                'peso_questao' => $pesoQuestao
-            ];
-        }
-        if ($request->filled('pergunta4')) {
-            $pesoQuestao = 4;
-
-            $avaliacao['q4'] = [
-                'id' => $request->input('pergunta4'),
-                'peso_questao' => $pesoQuestao
-            ];
-        }
-        if ($request->filled('pergunta5')) {
-            $pesoQuestao = 5;
-
-            $avaliacao['q5'] = [
-                'id' => $request->input('pergunta5'),
-                'peso_questao' => $pesoQuestao
-            ];
+            $i ++;
         }
 
-        //
-
-        /*
-         array (size=5)
-          'pergunta1' => string '3' (length=1)
-          'pergunta2' => string '3' (length=1)
-          'pergunta3' => string '1' (length=1)
-          'pergunta4' => string '5' (length=1)
-          'pergunta5' => string '5' (length=1)
-         */
-
-        dd( $avaliacao );
-        $r = array_keys($avaliacao, 3);
-
-        dd( $r );
+        echo "<pre>";
+        print_r($avaliacao);
+        echo "</pre>";
+        die;
     }
 }

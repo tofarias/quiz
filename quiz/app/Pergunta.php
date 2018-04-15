@@ -3,6 +3,8 @@
 namespace App;
 
 use Illuminate\Http\Request;
+use phpDocumentor\Reflection\Types\Integer;
+use phpDocumentor\Reflection\Types\String_;
 
 class Pergunta
 {
@@ -29,5 +31,16 @@ class Pergunta
 
     }
 
+    public function getPesoPergunta(string $pergunta) : string
+    {
+        $perguntas = [
+            'pergunta1' => 1,
+            'pergunta2' => 2,
+            'pergunta3' => 3,
+            'pergunta4' => 4,
+            'pergunta5' => 5
+        ];
 
+        return $perguntas[$pergunta];
+    }
 }
