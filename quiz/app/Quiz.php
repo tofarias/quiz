@@ -25,9 +25,9 @@ class Quiz
             {
                 for( $contadorDeAlternativas = 0; $contadorDeAlternativas < 5; $contadorDeAlternativas ++ )
                 {
-                    if( empty($alternativas[$contadorDeAlternativas][$contadorDePerguntas]['frase']) ){
+                    if( empty($alternativas[$contadorDeAlternativas][$contadorDePerguntas]['alternativa']) ){
                         
-                        $alternativas[$contadorDeAlternativas][$contadorDePerguntas]['frase'] = array_shift( $serie['alternativas'] );
+                        $alternativas[$contadorDeAlternativas][$contadorDePerguntas]['alternativa'] = array_shift( $serie['alternativas'] );
                         $alternativas[$contadorDeAlternativas][$contadorDePerguntas]['id'] = $serie['id'];
                     }
                 }

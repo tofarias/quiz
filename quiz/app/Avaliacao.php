@@ -41,20 +41,23 @@ class Avaliacao
         }
 
         $this->dados = $this->calcularNotas($avaliacao);
+        echo '<pre>';
+        print_r( $this->dados );
+        echo '</pre>';die;
     }
 
-    public function calcularNotas( Array $dados ) : Array
+    public function calcularNotas( Array $avaliacao ) : Array
     {
-        foreach( $this->dados as $k => $dados )
+        foreach( $avaliacao as $k => $dados )
         {
-            $this->dados[$k]['nota'] = 0;
+            $avaliacao[$k]['nota'] = 0;
             foreach( $dados['perguntas'] as $pergunta )
             {
-                $this->dados[$k]['nota'] += $pergunta['peso'];
+                $avaliacao[$k]['nota'] += $pergunta['peso'];
             }
         }
 
-        $arr = $this->dados;
+        $arr = $avaliacao;
         usort($arr, array($this,'ordenarPorNota'));
         return $arr;
     }
