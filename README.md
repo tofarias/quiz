@@ -4,7 +4,7 @@ Baseado nas respostas do usuário, o algoritmo define qual série melhor represe
 # Instalação
 - Acessar o diretório "quiz"
 - No terminal: composer install
-- php -S 127.0.1.1:8000 -t public public/index.php
+- php -S localhost:8000 -t public public/index.php
 
 # Design da Solução
 - Foi criado um arquivo "database/series.php" que reúne os dados das séries a serem utilizadas neste Quiz.
