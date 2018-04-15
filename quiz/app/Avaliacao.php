@@ -17,27 +17,24 @@ class Avaliacao
 
     public function organizarDados( Array $dadosDaRequisicao )
     {
-        $this->serie->getIds();
+        $idSeries = $this->serie->getIds();
 
         $avaliacao = [];
 
         $i = 0;
-        for($id = 1; $id <=5; $id ++)
+        foreach($idSeries as $i => $idSerie)
         {
-            $arr = array_keys($dadosDaRequisicao, $id);
-            dd($arr);
+            $perguntas = array_keys($dadosDaRequisicao, $idSerie);
 
-            if( !empty(count($arr)) ){
-                $avaliacao[$i]['serie_id']    = $id;
-                $avaliacao[$i]['total_votos'] = count($arr);
+            if( !empty(count($perguntas)) ){
+                $avaliacao[$i]['serie_id']    = $idSerie;
+                $avaliacao[$i]['total_votos'] = count($perguntas);
 
-                foreach( $arr as $k => $p )
+                foreach( $perguntas as $k => $pergunta )
                 {
-                    $avaliacao[$i]['perguntas'][$k]['pergunta'] = $p;
-                    $avaliacao[$i]['perguntas'][$k]['peso'] = $pergunta->getPesoPergunta($p);
+                    $avaliacao[$i]['perguntas'][$k]['pergunta'] = $pergunta;
+                    $avaliacao[$i]['perguntas'][$k]['peso']     = $this->pergunta->getPesoPergunta($pergunta);
                 }
-
-                #$avaliacao[$i]['perguntas']   = $arr;
             }
 
             $i ++;
