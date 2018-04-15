@@ -40,9 +40,37 @@ class Avaliacao
             $i ++;
         }
 
+        $this->dados = $avaliacao;
+
+//        echo "<pre>";
+//        print_r($avaliacao);
+//        echo "</pre>";
+//        die;
+    }
+
+    public function calcularNotas()
+    {
+        foreach( $this->dados as $k => $dados )
+        {
+            $this->dados[$k]['nota'] = 0;
+            foreach( $dados['perguntas'] as $pergunta )
+            {
+                $this->dados[$k]['nota'] += $pergunta['peso'];
+            }
+        }
+
         echo "<pre>";
-        print_r($avaliacao);
+        #print_r( $this->dados );die;
+        $arr = $this->dados;
+
+        usort($arr, array($this,'ordenarPorNota'));
+        print_r( $arr );
         echo "</pre>";
         die;
+    }
+
+    public static function ordenarPorNota($a, $b)
+    {
+        return $a['nota'] <= $b['nota'] ? 1 : -1;
     }
 }

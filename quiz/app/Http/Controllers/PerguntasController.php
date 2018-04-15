@@ -27,5 +27,6 @@ class PerguntasController extends Controller
     public function avaliarRespostas(\Illuminate\Http\Request $request, Avaliacao $avaliacao)
     {
         $avaliacao->organizarDados( $request->all() );
+        $avaliacao->calcularNotas();
     }
 }
