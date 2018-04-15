@@ -21,11 +21,6 @@ class Pergunta
         $this->serie = $serie;
     }
 
-    public function buscar()
-    {
-        return require_once base_path().'/database/series.php';
-    }
-
     public function getPesoPergunta(string $pergunta) : string
     {
         $perguntas = [

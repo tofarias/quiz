@@ -22,9 +22,7 @@ class PerguntasController extends Controller
     {
         if( $request->isMethod('POST') ){
 
-            $dados = $avaliacao->avaliarDados( $request->all() );
-
-            $resposta = current($dados)['frase'];
+            $resposta = $avaliacao->avaliarDados( $request->all() );
         }
 
         $alternativasDasSeries = $quiz->criar();

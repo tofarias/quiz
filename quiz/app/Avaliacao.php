@@ -41,10 +41,8 @@ class Avaliacao
             $i ++;
         }
 
-        return $this->calcularNotas($avaliacao);
-        #$echo '<pre>';
-        #print_r( $this->dados );
-        #echo '</pre>';die;
+        $avaliacao = $this->calcularNotas($avaliacao);
+        return current($avaliacao)['frase'];
     }
 
     public function calcularNotas( Array $avaliacao ) : Array
